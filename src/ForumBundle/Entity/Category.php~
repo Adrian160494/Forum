@@ -1,0 +1,29 @@
+<?php
+namespace ForumBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="categories")
+ */
+class Category {
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string",length=100)
+     */
+    private $category;
+
+    /**
+     * @ORM\Column(type="string",length=100)
+     */
+    private $link;
+
+}

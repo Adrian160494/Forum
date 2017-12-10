@@ -1,0 +1,47 @@
+{% extends "ForumBundle::layout.html.twig" %}
+
+{% block header %}
+    {{ topic }}
+{% endblock %}
+
+{% block content %}
+    <div class="post">
+        {% for post in posts %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="author"><span class="glyphicon glyphicon-user"></span> : {{ post.author }}</div>
+                    <div class="well message text-justify">{{ post.message }}</div>
+                    <div class="date">{{ post.date }}</div>
+                    <div class="category">Category: {{ post.category }}</div>
+                    <div class="input-group">
+                        <button class="btn btn-success">Like</button>
+                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-default">Report</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <hr>
+   <div class="text-right">
+       <p><span class="glyphicon glyphicon-arrow-left"></span>
+           {% for number in numberSites %}
+               <a href="{{ url('topic',{'category': category, 'topic': topic, 'page': (number+1)}) }}"> <button class="btn btn-primary" type="button">{{ number +1 }}</button></a>
+           {% endfor %}
+           <span class="glyphicon glyphicon-arrow-right"></span>
+       </p>
+   </div>
+    <br/>
+   <div class="panel panel-default">
+       <div class="panel-body">
+           <div class="form">
+               {{ form_start(form) }}
+               {{ form_widget(form.message) }}
+               {{ form_end(form) }}
+           </div>
+       </div>
+   </div>
+{% endblock %}
+{% block pagination %}
+
+{% endblock %}

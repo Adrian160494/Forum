@@ -1,0 +1,78 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/mainStyles.css') }}"/>
+{% endblock %}
+
+{% block javascripts %}
+        <script src="{{ asset('js/animations.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-md-3 col-sm-3 col-xs-3">
+            <div class="navigation">
+                <div class="text-center"><h1>Menu główne</h1></div>
+                <div class="navbar">
+                    <div><a href="{{ path('showForum') }}"><span class="glyphicon glyphicon-home"></span> Home</a></div>
+                    {% if app.user.username is defined %}
+                        {% else %}
+                            <div><a href="{{ path('register') }}"><span class="glyphicon glyphicon-registration-mark"></span> Rejestracja</a></div>
+                    {% endif %}
+                </div>
+                <div><a href="#" onclick="animeMenu()"><span class="glyphicon glyphicon-th-list"></span> Kategorie<b class="caret"></b></a></div>
+                <div id="show">
+                    <div><a href="{{ url('category', {'category': 'sport'}) }}">Sport</a></div>
+                    <div><a href="{{ url('category', {'category': 'science'}) }}">Nauka</a></div>
+                    <div><a href="{{ url('category', {'category': 'computers'}) }}">Komputery</a></div>
+                    <div><a href="{{ url('category', {'category': 'anime'}) }}">Anime</a></div>
+                    <div><a href="{{ url('category', {'category': 'food'}) }}">Jedzenie</a></div>
+                    <div><a href="{{ url('category', {'category': 'training'}) }}">Trening</a></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-9">
+            <div class="container-fluid">
+                <div class="logIn pull-right loginPanel">
+                    {% if app.user.username is defined %}
+                            <table class="table table-bordered">
+                                <tr><td>Zalogowano jako: {{  app.user.username }}</td><td>Email: {{ app.user.email }}</td><td><a href="{{ path('logout') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-log-out">Wyloguj</span></button></a>
+                                    </td></tr>
+                            </table>
+                        {% else %}
+                            <a href="{{ path('login') }}"><button class="btn btn-success" ><span class="glyphicon glyphicon-log-in"> Zaloguj</span></button></a>
+                            <a href="{{ path('logout') }}"><button class="btn btn-warning"><span class="glyphicon glyphicon-log-out">Wyloguj</span></button></a>
+                    {% endif %}
+                </div>
+                <div class="userInformaion">
+                </div>
+                <div class="page-header text-center">
+                    <h1>{% block header %}
+                        {% endblock %}</h1>
+                </div>
+                    <div class="col-xs-offset-1 col-xs-10 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+                        <div class="content">
+                        {% block content %}
+                        {% endblock %}
+                        {% block pagination %}
+                        {% endblock %}
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+        <div class="footer">
+            <div class="copyright text-center">
+                <p>Copyright by Adrian Ciejka 2017 <span class="glyphicon glyphicon-copyright-mark"></span></p>
+            </div>
+            <div class="socialMedia pull-right">
+                <img src="{{ asset('img/face2.png') }}" width="40px"/>
+                <img src="{{ asset('img/insta.png') }}" width="40px"/>
+                <img src="{{ asset('img/twit2.png') }}" width="40px" />
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

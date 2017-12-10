@@ -1,0 +1,47 @@
+<?php
+
+namespace ForumBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="Messages")
+ */
+class Message{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $message;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $author;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $topic;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $category;
+
+
+
+}

@@ -1,0 +1,14 @@
+{% extends 'ForumBundle::layout.html.twig' %}
+
+{% block header %}
+    Strona Główna
+    {% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block categories %}
+    {% for cat in categories %}
+        <li><a href="#">{{ cat.category}}</a></li>
+    {% endfor %}
+{% endblock %}

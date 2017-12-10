@@ -1,0 +1,31 @@
+{% extends 'ForumBundle::layout.html.twig' %}
+
+{% block header %}
+   {{ header }}
+{% endblock %}
+
+
+{% block content %}
+    {% for top in topics %}
+        <div class="well">
+            <div class="text-center"><h3>Temat</h3></div>
+            <div class="text-center"><h4><a href="{{ header }}/{{ top.topic }}/page=1"> {{ top.topic }}</a></h4></div>
+        </div>
+    {% endfor %}
+
+    {% if app.user.username is defined %}
+        <div class="panel panel-info">
+            {{ form_start(form) }}
+            <div class="panel-heading text-center">
+                {{ form_label(form.topic) }}
+            </div>
+            <div class="panel-body">
+                {{ form_widget(form.topic) }}
+            </div>
+            <div class="text-center panel-footer">
+                {{ form_widget(form.Dodaj) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    {% endif %}
+{% endblock %}
